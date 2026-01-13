@@ -20,12 +20,6 @@ const navItems = [
   { href: "#contact", key: "nav_contact" },
 ];
 
-const stats = [
-  { value: "10+", key: "hero_stat_years_label" },
-  { value: "5000+", key: "hero_stat_patients_label" },
-  { value: "100%", key: "hero_stat_dedication_label" },
-];
-
 const services = [
   {
     key: "service_trauma",
@@ -57,24 +51,16 @@ const services = [
   },
 ];
 
-const badges = [
-  { icon: "🏆", title: "Clinical Excellence", detail: "Award 2023", key: "credential_badge_1" },
-  { icon: "📜", title: "Advanced Trauma", detail: "Certification", key: "credential_badge_2" },
-  { icon: "🎖️", title: "Sports Medicine", detail: "Specialist", key: "credential_badge_3" },
-  { icon: "⭐", title: "Best Orthopedic", detail: "Regional 2022", key: "credential_badge_4" },
-];
-
 const timeline = [
-  { year: "2013", label: "MBBS", detail: "JSS Medical College" },
-  { year: "2018", label: "MS Orthopedics", detail: "Bangalore Medical College" },
-  { year: "2020", label: "Consultant", detail: "Max Hospital" },
-  { year: "Now", label: "Senior Surgeon", detail: "10+ Years Experience", active: true },
+  { year: "2014", label: "MBBS", detail: "JSS Medical College" },
+  { year: "2022", label: "MS Orthopedics", detail: "Bangalore Medical College" },
+  { year: "2025", label: "Consultant", detail: "Max Hospital", active: true },
 ];
 
 const affiliations = [
-  { icon: "🏥", name: "Max Multi Speciality Hospital", key: "affiliation_one" },
-  { icon: "🦴", name: "Indian Orthopaedic Association", key: "affiliation_two" },
-  { icon: "⚕️", name: "Karnataka Medical Council", key: "affiliation_three" },
+  { icon: "hospital", name: "Max Multi Speciality Hospital", key: "affiliation_one" },
+  { icon: "bone", name: "Indian Orthopaedic Association", key: "affiliation_two" },
+  { icon: "medical", name: "Karnataka Medical Council", key: "affiliation_three" },
 ];
 
 const concernOptions = [
@@ -91,29 +77,6 @@ const whatsappOptions = [
   { key: "whatsapp_message_directions", labelKey: "whatsapp_option_directions" },
   { key: "whatsapp_message_timings", labelKey: "whatsapp_option_timings" },
   { key: "whatsapp_message_general", labelKey: "whatsapp_option_general" },
-];
-
-const faqs = [
-  {
-    question: "What should I do immediately after a fracture?",
-    answer: "Immobilize the affected area, apply ice wrapped in cloth, elevate if possible, and seek medical attention immediately. Do not try to realign the bone yourself.",
-  },
-  {
-    question: "How long does it take to recover from knee replacement surgery?",
-    answer: "Most patients can walk with support within 2-3 days after surgery. Full recovery typically takes 3-6 months, with physical therapy playing a crucial role in rehabilitation.",
-  },
-  {
-    question: "When should I see an orthopedic doctor for back pain?",
-    answer: "Consult a doctor if back pain persists for more than 2 weeks, is accompanied by numbness or weakness, results from an injury, or affects bladder/bowel control.",
-  },
-  {
-    question: "Do you accept insurance?",
-    answer: "Yes, we accept most major insurance providers. Please contact our office to verify your specific insurance coverage before your appointment.",
-  },
-  {
-    question: "What are the consultation hours?",
-    answer: "We are available Monday to Saturday, 9:00 AM to 1:00 PM and 5:00 PM to 8:00 PM. Emergency services are available 24/7.",
-  },
 ];
 
 const Container = ({ children }: { children: ReactNode }) => (
@@ -212,7 +175,6 @@ export default function Home() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [whatsappOpen, setWhatsappOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const whatsappRef = useRef<HTMLDivElement | null>(null);
 
   const t = translations[lang] ?? translations.en;
@@ -310,7 +272,7 @@ export default function Home() {
   };
 
   const handleWhatsapp = (key: string) => {
-    const phone = "919876543210";
+    const phone = "918123841470";
     const message = tr(key);
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank", "noopener,noreferrer");
@@ -318,7 +280,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative min-h-screen flex flex-col">
       <a
         href="#home"
         className="sr-only focus:not-sr-only focus:fixed focus:top-6 focus:left-6 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold"
@@ -459,7 +421,7 @@ export default function Home() {
         )}
       </header>
 
-      <main>
+      <main className="flex-1">
         <section id="home" className="relative pb-20 pt-28">
           <Container>
             <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
@@ -490,23 +452,19 @@ export default function Home() {
                     {tr("hero_secondary_cta")}
                   </a>
                 </div>
-                <div className="grid gap-4 md:grid-cols-3">
-                  {stats.map((stat) => (
-                    <div key={stat.key} className="glass rounded-2xl px-4 py-3 text-center">
-                      <p className="text-xl font-semibold text-[color:var(--ink-900)]">
-                        {stat.value}
-                      </p>
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ink-500)]">
-                        {tr(stat.key)}
-                      </p>
-                    </div>
-                  ))}
-                </div>
               </div>
               <div className="relative">
                 <div className="glass relative overflow-hidden rounded-[32px] p-6">
                   <div className="portrait-placeholder" role="img" aria-label="Doctor portrait placeholder">
-                    <div className="absolute inset-0 rounded-[28px] bg-[linear-gradient(145deg,_rgba(13,148,136,0.55),_rgba(255,255,255,0.8))]"></div>
+                    {/* TODO: Replace this placeholder with actual photo */}
+                    {/* <Image src="/doctor-photo.jpg" alt="Dr. Nithin KR" fill className="object-cover rounded-[28px]" /> */}
+                    <div className="absolute inset-0 rounded-[28px] bg-[linear-gradient(145deg,_rgba(13,148,136,0.55),_rgba(255,255,255,0.8))] flex flex-col items-center justify-center">
+                      <svg className="h-16 w-16 text-teal-600/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <p className="mt-2 text-sm font-medium text-teal-700/70">Add Photo Here</p>
+                      <p className="text-xs text-teal-600/50">Place doctor-photo.jpg in /public</p>
+                    </div>
                     <div className="absolute bottom-8 left-8 rounded-full bg-black/80 border border-white/20 px-4 py-2 text-xs font-semibold text-[color:var(--teal-500)] shadow">
                       {tr("hero_badge")}
                     </div>
@@ -537,7 +495,13 @@ export default function Home() {
               <div className="space-y-6">
                 <div className="glass relative overflow-hidden rounded-[28px] p-6">
                   <div className="portrait-placeholder" role="img" aria-label="Doctor photo placeholder">
-                    <div className="absolute inset-0 rounded-[22px] bg-[linear-gradient(160deg,_rgba(13,148,136,0.35),_rgba(255,255,255,0.75))]"></div>
+                    {/* TODO: Replace with actual photo - same as hero */}
+                    <div className="absolute inset-0 rounded-[22px] bg-[linear-gradient(160deg,_rgba(13,148,136,0.35),_rgba(255,255,255,0.75))] flex flex-col items-center justify-center">
+                      <svg className="h-14 w-14 text-teal-600/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <p className="mt-2 text-xs font-medium text-teal-700/60">Add Photo</p>
+                    </div>
                     <span className="absolute top-6 left-6 rounded-full bg-[color:rgba(212,175,55,0.9)] px-3 py-1 text-xs font-semibold text-[color:var(--ink-900)]">
                       {tr("about_badge")}
                     </span>
@@ -666,28 +630,6 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Pill Dock Badges */}
-              <div className="flex flex-wrap justify-center gap-4">
-                {badges.map((badge) => (
-                  <div
-                    key={badge.key}
-                    className="glass group flex cursor-pointer items-center gap-3 rounded-full px-5 py-3 transition duration-300 hover:-translate-y-1 hover:scale-105 hover:border-[color:var(--gold-500)] hover:shadow-[0_20px_40px_rgba(13,148,136,0.2)]"
-                  >
-                    <span className="text-2xl transition group-hover:scale-110 group-hover:-rotate-6">
-                      {badge.icon}
-                    </span>
-                    <div className="flex flex-col">
-                      <span className="text-sm font-semibold text-[color:var(--ink-900)]">
-                        {badge.title}
-                      </span>
-                      <span className="text-xs text-[color:var(--ink-500)] opacity-0 -translate-y-1 transition duration-200 group-hover:opacity-100 group-hover:translate-y-0">
-                        {badge.detail}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
               {/* Career Timeline */}
               <div className="mt-8">
                 <p className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--ink-500)]">
@@ -735,8 +677,23 @@ export default function Home() {
                       key={aff.key}
                       className="group flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 transition hover:-translate-y-1 hover:bg-white/10 hover:shadow-md"
                     >
-                      <span className="text-lg transition group-hover:scale-125">
-                        {aff.icon}
+                      <span className="flex h-6 w-6 items-center justify-center text-teal-500 transition group-hover:scale-110">
+                        {aff.icon === "hospital" && (
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+                            <path d="M3 21h18M5 21V7l8-4 8 4v14M9 21v-6h6v6M9 9h.01M15 9h.01M9 13h.01M15 13h.01" />
+                          </svg>
+                        )}
+                        {aff.icon === "bone" && (
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+                            <circle cx="5" cy="5" r="2" /><circle cx="19" cy="19" r="2" />
+                            <path d="M5 7v2a4 4 0 004 4h6a4 4 0 004-4V7M5 17v-2a4 4 0 014-4" />
+                          </svg>
+                        )}
+                        {aff.icon === "medical" && (
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                          </svg>
+                        )}
                       </span>
                       <span className="text-xs font-semibold text-[color:var(--ink-700)]">
                         {aff.name}
@@ -882,13 +839,13 @@ export default function Home() {
                         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ink-500)]">
                           {tr("contact_phone_label")}
                         </p>
-                        <p className="mt-2">+91 98765 43210</p>
+                        <p className="mt-2">+91 81238 41470</p>
                       </div>
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ink-500)]">
                           {tr("contact_email_label")}
                         </p>
-                        <p className="mt-2">dr.nithin.ortho@email.com</p>
+                        <p className="mt-2">nith777ine@gmail.com</p>
                       </div>
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ink-500)]">
@@ -956,8 +913,8 @@ export default function Home() {
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--ink-500)]">
                 {tr("footer_connect_title")}
               </p>
-              <p>+91 98765 43210</p>
-              <p>dr.nithin.ortho@email.com</p>
+              <p>+91 81238 41470</p>
+              <p>nith777ine@gmail.com</p>
               <p>{tr("footer_address")}</p>
             </div>
           </div>

@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import {
   Noto_Sans_Kannada,
   Playfair_Display,
   Plus_Jakarta_Sans,
 } from "next/font/google";
 import "./globals.css";
+
+// Replace with your Google Analytics Measurement ID
+const GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -50,6 +54,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+      </head>
       <body
         className={`${playfair.variable} ${jakarta.variable} ${kannada.variable} antialiased`}
         suppressHydrationWarning
