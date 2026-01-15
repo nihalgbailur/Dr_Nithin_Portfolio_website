@@ -4,17 +4,19 @@ This repository is intended for a personal portfolio site. If the structure or t
 
 ## Project Structure & Module Organization
 
-- `src/`: application code (pages, components, and logic).
-- `public/` or `assets/`: static files such as images, icons, and fonts.
-- `styles/`: global styles and shared tokens.
-- `content/`: markdown or JSON copy used to populate sections.
+- `app/`: Next.js App Router pages, layouts, and API routes.
+- `components/`: shared UI sections and icons (example: `components/hero-section.tsx`).
+- `content/`: JSON copy used to populate sections (example: `content/services.json`).
+- `locales/`: translation dictionaries (`locales/en.json`, `locales/kn.json`).
+- `public/`: static files such as images, icons, and fonts.
+- `archive/`: legacy static assets and templates kept for reference.
 - `tests/`: automated tests (unit, integration, or e2e).
 
-If you introduce a different layout, document the new locations here with examples like `src/components/` or `content/projects.json`.
+If you introduce a different layout, document the new locations here with examples like `components/` or `content/projects.json`.
 
 ## Build, Test, and Development Commands
 
-No build tooling is committed yet. When adding Node-based tooling, keep scripts in `package.json` consistent with these conventions:
+Next.js tooling is configured. Keep scripts in `package.json` consistent with these conventions:
 
 - `npm install`: install dependencies.
 - `npm run dev`: start the local development server.

@@ -1,0 +1,6 @@
+[
+  { "key": "whatsapp_message_appointment", "labelKey": "whatsapp_option_appointment" },
+  { "key": "whatsapp_message_directions", "labelKey": "whatsapp_option_directions" },
+  { "key": "whatsapp_message_timings", "labelKey": "whatsapp_option_timings" },
+  { "key": "whatsapp_message_general", "labelKey": "whatsapp_option_general" }
+]

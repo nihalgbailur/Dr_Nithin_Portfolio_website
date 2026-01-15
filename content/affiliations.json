@@ -1,0 +1,5 @@
+[
+  { "icon": "hospital", "key": "affiliation_one" },
+  { "icon": "bone", "key": "affiliation_two" },
+  { "icon": "medical", "key": "affiliation_three" }
+]

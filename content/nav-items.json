@@ -1,0 +1,7 @@
+[
+  { "href": "#home", "key": "nav_home" },
+  { "href": "#about", "key": "nav_about" },
+  { "href": "#services", "key": "nav_services" },
+  { "href": "#credentials", "key": "nav_credentials" },
+  { "href": "#contact", "key": "nav_contact" }
+]

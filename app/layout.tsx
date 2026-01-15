@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Script from "next/script";
 import {
   Noto_Sans_Kannada,
@@ -7,8 +6,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 
-// Replace with your Google Analytics Measurement ID
-const GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -28,45 +26,34 @@ const kannada = Noto_Sans_Kannada({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Dr. Nithin KR | Orthopedic Surgeon in Shivamogga",
-  description:
-    "Expert orthopedic care by Dr. Nithin KR, MS Orthopedics. Specializing in trauma, sports injuries, spine care, and arthritis treatment at Max Multi Speciality Hospital, Shivamogga.",
-  keywords: [
-    "orthopedic surgeon shivamogga",
-    "bone doctor",
-    "fracture treatment",
-    "sports injury",
-    "back pain treatment",
-    "joint pain specialist",
-  ],
-  openGraph: {
-    title: "Dr. Nithin KR | Orthopedic Surgeon",
-    description: "Expert orthopedic care in Shivamogga",
-    type: "website",
-  },
-};
-
 export default function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params?: { lang?: string };
 }>) {
+  const lang = params?.lang ?? "en";
+
   return (
-    <html lang="en">
+    <html lang={lang}>
       <head>
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-        </Script>
+        {gaMeasurementId ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaMeasurementId}');
+              `}
+            </Script>
+          </>
+        ) : null}
       </head>
       <body
         className={`${playfair.variable} ${jakarta.variable} ${kannada.variable} antialiased`}

@@ -1,0 +1,5 @@
+[
+  { "year": "2014", "labelKey": "timeline_2014_label", "detailKey": "timeline_2014_detail" },
+  { "year": "2022", "labelKey": "timeline_2022_label", "detailKey": "timeline_2022_detail" },
+  { "year": "2025", "labelKey": "timeline_2025_label", "detailKey": "timeline_2025_detail", "active": true }
+]

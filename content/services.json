@@ -1,0 +1,34 @@
+[
+  {
+    "key": "service_trauma",
+    "titleKey": "service_trauma_title",
+    "descKey": "service_trauma_desc",
+    "tags": ["service_tag_emergency", "service_tag_fracture_care", "service_tag_surgery"],
+    "size": "large",
+    "icon": "bone"
+  },
+  {
+    "key": "service_spine",
+    "titleKey": "service_spine_title",
+    "descKey": "service_spine_desc",
+    "tags": ["service_tag_back_pain", "service_tag_disc_issues", "service_tag_posture"],
+    "size": "large",
+    "icon": "spine"
+  },
+  {
+    "key": "service_arthritis",
+    "titleKey": "service_arthritis_title",
+    "descKey": "service_arthritis_desc",
+    "tags": ["service_tag_joint_pain", "service_tag_mobility"],
+    "size": "wide",
+    "icon": "joint"
+  },
+  {
+    "key": "service_sports",
+    "titleKey": "service_sports_title",
+    "descKey": "service_sports_desc",
+    "tags": ["service_tag_athletes", "service_tag_recovery"],
+    "size": "wide",
+    "icon": "sports"
+  }
+]
